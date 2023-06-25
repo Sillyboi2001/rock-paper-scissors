@@ -38,6 +38,28 @@ const gameRound = (playerSelection, computerSelection) => {
     }
 }
 
-const playerChoice = 'Paper';
+const playerChoice = prompt('Rock, Paper or Scissors?')
 const computerChoice = getComputerChoice()
 console.log(gameRound(playerChoice, computerChoice))
+
+let playerScore = 0
+let computerScore = 0
+
+const game = () => {
+    const gamePlayed = gameRound(playerChoice, computerChoice)
+    if(gamePlayed.match('You Win')) {
+        playerScore++
+    }
+    if (gamePlayed.match('You Lose')) {
+        computerScore++
+    }
+    if (playerScore >= 5 && computerScore < 5) {
+        return `Game Over. You Win`
+    } else if (playerScore < 5 && computerScore >= 5) {
+        return `Game Over. Computer Win`
+    }
+    return [playerScore, computerScore]
+}
+
+console.log(game())
+
