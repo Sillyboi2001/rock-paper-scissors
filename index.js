@@ -1,65 +1,98 @@
+let playerSelection;
+let computerSelection;
+let playerScore = 0
+let computerScore = 0
+
+const p = document.querySelector('#rounds')
+const player_Score = document.getElementById('player-score')
+const computer_Score = document.getElementById('computer-score')
+const buttons = document.querySelectorAll('#button')
+
 const getComputerChoice = () => {
     //Generate computer choice from the array
     const choice = ['Rock', 'Paper', 'Scissors']
     const randomChoice = choice[Math.floor(Math.random() * choice.length)]
     return randomChoice
 }
+
+computerSelection = getComputerChoice()
+
+// Create a function to disable all buttons
+const disableButtons = () => {
+    buttons.forEach((button) => {
+      button.setAttribute('disabled', '');
+    });
+  }
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerSelection = button.value
+        game()
+        if (playerScore >= 5 && computerScore < 5) {
+            p.textContent = `Game Over. You Win`
+            disableButtons()
+
+        } else if (playerScore < 5 && computerScore >= 5) {
+            p.textContent = `Game Over. Computer Win`
+            disableButtons()
+        }
+    })
+})
+
+
 const gameRound = (playerSelection, computerSelection) => {
-    const playerChoice1 = /rock/i
-    const playerChoice2 = /paper/i
-    const playerChoice3 = /scissors/i
-    let draw = ''
-    if (playerSelection.match(playerChoice1)) {
+    computerSelection = getComputerChoice()
+    let result = ''
+    if (playerSelection == 'rock') {
         if (computerSelection == 'Paper') {
-            return `You Lose! ${computerSelection} wins ${playerSelection}`
+            result = `You Lose! ${computerSelection} wins ${capitalise(playerSelection)}`
         } else if (computerSelection == 'Scissors') {
-            return `You Win! ${playerSelection} wins ${computerSelection}`
+            result = `You Win! ${capitalise(playerSelection)} wins ${computerSelection}`
         } else {
-            return draw = 'Its a tie'
+            result = 'Its a tie'
         }
     }
-    if (playerSelection.match(playerChoice2)) {
+    if (playerSelection == 'paper') {
         if (computerSelection == 'Scissors') {
-            return `You Lose! ${computerSelection} wins ${playerSelection}`
+            result = `You Lose! ${computerSelection} wins ${capitalise(playerSelection)}`
         } else if (computerSelection == 'Rock') {
-            return `You Win! ${playerSelection} wins ${computerSelection}`
+            result = `You Win! ${capitalise(playerSelection)} wins ${computerSelection}`
         } else {
-            return draw = 'Its a tie'
+            result = 'Its a tie'
         }
     }
-    if (playerSelection.match(playerChoice3)) {
+    if (playerSelection == 'scissors') {
         if (computerSelection == 'Rock') {
-            return `You Lose! ${computerSelection} wins ${playerSelection}`
+            result = `You Lose! ${computerSelection} wins ${capitalise(playerSelection)}`
         } else if (computerSelection == 'Paper') {
-            return `You Win! ${playerSelection} wins ${computerSelection}`
+            result = `You Win! ${capitalise(playerSelection)} wins ${computerSelection}`
         } else {
-            return draw = 'Its a tie'
+            result = 'Its a tie'
         }
     }
+    return result
 }
 
-const playerChoice = prompt('Rock, Paper or Scissors?')
-const computerChoice = getComputerChoice()
-console.log(gameRound(playerChoice, computerChoice))
-
-let playerScore = 0
-let computerScore = 0
-
 const game = () => {
-    const gamePlayed = gameRound(playerChoice, computerChoice)
+    const gamePlayed = gameRound(playerSelection, computerSelection)
     if(gamePlayed.match('You Win')) {
         playerScore++
     }
     if (gamePlayed.match('You Lose')) {
         computerScore++
     }
-    if (playerScore >= 5 && computerScore < 5) {
-        return `Game Over. You Win`
-    } else if (playerScore < 5 && computerScore >= 5) {
-        return `Game Over. Computer Win`
-    }
-    return [playerScore, computerScore]
+    
+    p.textContent = gamePlayed
+    player_Score.textContent = playerScore
+    computer_Score.textContent = computerScore
 }
 
-console.log(game())
+const capitalise = (str) => {
+    const firstWord = str.slice(0, 1).toUpperCase() + str.slice(1)
+    return firstWord
+}
 
+const restartButton = document.querySelector('#btn')
+restartButton.addEventListener('click', () => {
+    window.location.reload()
+})
