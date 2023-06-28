@@ -8,7 +8,10 @@ I intend to create a game of rock-paper-scissors that a user can play with compu
 What I've learnt
 
 
-I learnt how to generate strings randomly from an array
+> I learnt how to generate strings randomly from an array
 
 
-I learnt how to use if, nested if's statements where neccesary
+> I learnt how to use if, nested if's statements where necessary
+
+
+> Using JS functions to manipulate the DOM 
