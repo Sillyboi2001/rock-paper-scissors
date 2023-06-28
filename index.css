@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #e5e7eb;
+}
+#header {
+    background-color: rgb(25, 25, 49);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+#restart-btn {
+    text-align: center;
+    padding: 20px 20px;
+    background-color: #e5e7eb;
+}
+#restart-btn #btn {
+    padding: 20px;
+    width: 200px;
+    border: 2px solid rgb(25, 25, 49);
+}
+#score-labels {
+    display: flex;
+    border: 1px solid grey;
+}
+#score-labels > div {
+    flex: 1;
+    text-align: center;
+    padding: 15px 15px;
+    font-size: 20px;
+}
+#score-labels > div:nth-child(1) {
+    background-color: rgb(25, 25, 49);
+    color: #fff;
+}
+#score-labels > div:nth-child(2) {
+    background-color: darkslategray;
+    color: #fff;
+}
+#score-round {
+    padding: 10px 10px;
+    background-color: #e5e7eb;
+}
+#rounds {
+    text-align: center;
+    font-size: 18px;
+}
+#container {
+    margin-top: 20px;
+    display: flex;
+    padding: 30px 20px;
+    gap: 20px;
+    background-color: #e5e7eb;
+}
+#container > button {
+    flex: 1;
+    padding: 20px;
+    font-size: 30px;
+}
+#container .rock {
+    border: 2px solid rgb(25, 25, 49);
+    background-color: rgb(25, 25, 49);
+    color: #fff;
+}
+#container .paper {
+    border: 2px solid rgb(25, 25, 49);
+    background-color: darkslategray;
+    color: #fff;
+}
+#container .scissors {
+    border: 2px solid rgb(25, 25, 49);
+    background-color: rgb(25, 25, 49);
+    color: #fff;
+}
